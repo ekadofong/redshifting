@@ -916,7 +916,8 @@ def findz_galaxy(spec, zmin=-0.1, zmax=1.5, dz=0.0001):
       redshifts['fluxcal1'] = eigenvalues[5]
       redshifts['fluxcal2'] = eigenvalues[6]
 
-   
+   if return_specobj:
+      return redshifts, spec
    return redshifts
    
    
