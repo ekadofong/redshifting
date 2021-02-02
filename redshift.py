@@ -850,15 +850,15 @@ def findz_galaxy(spec, zmin=-0.1, zmax=1.5, dz=0.0001):
    one_over_sigmasquared = 1/spec['error']**2
    
    index = np.where((np.isnan(spec['flux'])) | (np.isnan(spec['error'])))
-   spec[index]['flux'] = 0.0
-   spec[index]['error'] = 0.0
-   spec[index]['mask'] = 0
+   spec['flux'][index] = 0.0
+   spec['error'][index] = 0.0
+   spec['mask'][index] = 0
    
    index = np.where((spec['mask'] == 0) | (spec['error'] == 0.0))
    one_over_sigmasquared[index] = 0.0
    
-   index = np.where(spec['mask'] == 0)
-   one_over_sigmasquared[index] = 0.0
+   #index = np.where(spec['mask'] == 0) #// redundant? EKF
+   #one_over_sigmasquared[index] = 0.0
    
    wave = spec['wave']
    flux = spec['flux']
@@ -888,6 +888,7 @@ def findz_galaxy(spec, zmin=-0.1, zmax=1.5, dz=0.0001):
                            constant*one_over_sigmasquared*mask,
                            linear*one_over_sigmasquared*mask,
                            square*one_over_sigmasquared*mask])#At*Ci
+
          eigenvalues = np.linalg.inv(AtCi*A)*AtCi*Y
          eigenvalues = eigenvalues.getA1()
       
