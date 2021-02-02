@@ -814,7 +814,7 @@ def findz_qso_hw(spec, zmin=0.0, zmax=3.0, dz=0.0005):
 # mask = 1 for good data, = 0 for bad data           
 # Appropriate for low-z galaxies observed in rest-frame optical
 # Does not include IGM attenuation
-def findz_galaxy(spec, zmin=-0.1, zmax=1.5, dz=0.0001):
+def findz_galaxy(spec, zmin=-0.1, zmax=1.5, dz=0.0001, return_specobj=False):
    
    
    
